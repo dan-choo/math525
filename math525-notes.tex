@@ -1,0 +1,103 @@
+\documentclass[notitlepage,abstract=on,twoside=semi]{scrartcl}
+
+\usepackage{dandan}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{comment}
+
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\om}{\ensuremath{\Omega}}
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\newcommand{\Prob}{\ensuremath{\mathbb{P}}}
+
+
+\renewcommand*{\sectionformat}
+{\color{purple}\S\thesection\autodot\enskip}
+
+\begin{document}
+\section{Lecture 1}
+We begin with the definition of probability.
+\begin{definition}[\textbf{Probability}]
+  \label{1/5:1}
+  A mathematical model about random experiments.
+\end{definition}
+In this class, we fix the notation $\om, \F, \Prob$. We say that $\om$ is our
+``sample space'' or the set of all possible outcomes. For example, if our
+experiment was flipping a coin, then $\om = \{H, T\}$. It is also important to
+note that $\om$ can be countably or uncountably infinite. For example, our
+experiment might be picking a positive integer in which $\om = \N$. Or our
+experiment might be throwing a dart at a board in which $\om$ would be
+uncountably infinite.
+
+We define $\F$ to be the set of all events, mathematically speaking it's a
+$\sigma$ algebra. We can define an event to be a subset of $\om$. For example,
+if our experiment is flipping two coins, then an event could be that the first
+coin is heads - the precise event would then be $\{HH, HT\}$ (notice that both
+$HH$ and $HT$ are in $\om$.
+
+Another interesting example might be where we roll a die as our
+experiment. Then we could say an event is rolling an \textit{even} number
+that's greater than 4. The precise event would be $\{4, 6\}$. Notice, however,
+that we can actually write this event as the intersection of two events. That
+is
+\begin{enumerate}
+\item Rolling an even number : $\{2,4,6\}$.
+\item Rolling a number greater than 4 : $\{4,5,6\}$.
+\end{enumerate}
+Then the intersection of these two events is exactly our event of rolling an
+even number greater than 4.
+\begin{remark}
+  When we say one event $A$ happens, it means we get some outcome $\omega \in
+  \om$ s.t. $\omega \in A$. If $\omega \not \in A$, then $A$ \textit{doesn't}
+  happen.
+\end{remark}
+\begin{remark}
+  We can also do set operations on events. That is if $A$ and $B$ are events,
+  then we can say that the event of $A$ or $B$ happening is exactly $A \cup B$.
+\end{remark}
+\begin{definition}
+  We define the complement of event $A$ to be $A^{c} = \{\omega \in \om :
+  \omega \not \in A\}$.
+\end{definition}
+\begin{remark}
+  If $\om$ is finite, then one possible choice of $\F$ is $\F = 2^{\om}$.
+\end{remark}
+Note that $2^{\om}$ is defined to be the \textit{power set} of $\om$, or the
+``set of all subsets of $\om$''.
+
+One more thing to note, but not terribly important for this class is that if
+$\om$ is infinite, then $\F \neq 2^{\om}$.
+
+Finally, we define $\Prob$ to be a function from $\F$ to the closed interval
+$[0, 1]$. That is, $\Prob : \F \to [0, 1]$. Notice that this means we can only
+talk about the probability of one event.
+
+If we want to talk about the probability of some outcome $\omega$, then
+formally we would define the event $\{\omega\}$ and ask what is
+$\Prob(\{\omega\})$.
+
+Recall that we said that $\F$ is a ``$\sigma$ algebra''. Here we define it
+formally.
+\begin{definition}
+  Let $\om$ be a set. We say that $\F$ is a $\sigma$ algebra of $\om$ if it
+  satisfies:
+  \begin{enumerate}
+  \item $\emptyset \in \F$
+  \item If $A_{1}, A_{2}, \cdots \in \F$, then $\bigcup_{i=1}^{\infty} A_{i}
+    \in \F$
+  \item If $A \in \F$, then $A^{c} \in F$ (recall that $A^{c}$ is the
+    \textit{complement} if $A$)
+  \end{enumerate}
+\end{definition}
+Now just from these three properties, we can, in fact, prove that if $A_{1},
+A_{2}, \cdots, A_{n} \in \F$, then $\bigcap_{i=1}^{n} A_{i} \in \F$ as well.
+\end{document}
+
+
+
+
+
