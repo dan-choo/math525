@@ -1,0 +1,124 @@
+\ProvidesPackage{dandan}
+
+% For some reason, this needs to come before mdframed?
+\PassOptionsToPackage{usenames,svgnames,dvipsnames,table}{xcolor}
+\usepackage{xcolor}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\mdfdefinestyle{mdredboxsharp}{
+  linewidth=0.5pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=Salmon!5,
+  linecolor=RawSienna,
+}
+\mdfdefinestyle{mdyellowboxsharp}{
+  linewidth=0.5pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=Apricot!5,
+  linecolor=Goldenrod,
+}
+
+\mdfdefinestyle{mdorangeboxsharp}{
+  linewidth=0.5pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=YellowOrange!5,
+  linecolor=BurntOrange,
+}
+
+
+\mdfdefinestyle{mdbluebox}{
+  linewidth=1pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  roundcorner=10pt,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=RoyalBlue!5,
+  linecolor=MidnightBlue,
+}
+
+\mdfdefinestyle{mdpurplebox}{
+  linewidth=1pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  roundcorner=10pt,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=Orchid!5,
+  linecolor=Mulberry,
+}
+
+\mdfdefinestyle{mdyellowbox}{
+  linewidth=1pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  roundcorner=10pt,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=Apricot!5,
+  linecolor=Goldenrod,
+}
+
+\mdfdefinestyle{mdgreenbox}{
+  linewidth=1pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  roundcorner=10pt,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=ForestGreen!5,
+  linecolor=ForestGreen,
+}
+
+\theoremstyle{definition}
+
+\newmdtheoremenv[style=mdbluebox]{definition}{Definition}[section]
+\newmdtheoremenv[style=mdgreenbox]{theorem}[definition]{Theorem}
+\newmdtheoremenv[style=mdpurplebox]{proposition}[definition]{Proposition}
+\newmdtheoremenv[style=mdyellowbox]{lemma}[definition]{Lemma}
+
+
+\newmdtheoremenv[style=mdredboxsharp]{example}[definition]{Example}
+\newmdtheoremenv[style=mdredboxsharp]{remark}[definition]{Remark}
+\newmdtheoremenv[style=mdredboxsharp]{corollary}[definition]{Corollary}
+
