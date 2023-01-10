@@ -3,6 +3,7 @@
 \usepackage{dandan}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
 \usepackage{mathtools}
+\usepackage{hyperref}
 \usepackage{comment}
 
 
@@ -18,11 +19,20 @@
 \renewcommand*{\sectionformat}
 {\color{purple}\S\thesection\autodot\enskip}
 
+\hypersetup{
+  colorlinks,
+  linkcolor={red!50!black},
+  citecolor={green!50!black},
+  urlcolor={magenta!80!black}
+}
+
 \begin{document}
+
 \section{Lecture 1}
+\label{lec1}
 We begin with the definition of probability.
 \begin{definition}[\textbf{Probability}]
-  \label{1/5:1}
+  \label{1:1}
   A mathematical model about random experiments.
 \end{definition}
 In this class, we fix the notation $\om, \F, \Prob$. We say that $\om$ is our
@@ -37,7 +47,7 @@ We define $\F$ to be the set of all events, mathematically speaking it's a
 $\sigma$ algebra. We can define an event to be a subset of $\om$. For example,
 if our experiment is flipping two coins, then an event could be that the first
 coin is heads - the precise event would then be $\{HH, HT\}$ (notice that both
-$HH$ and $HT$ are in $\om$.
+$HH$ and $HT$ are in $\om$).
 
 Another interesting example might be where we roll a die as our
 experiment. Then we could say an event is rolling an \textit{even} number
@@ -51,19 +61,23 @@ is
 Then the intersection of these two events is exactly our event of rolling an
 even number greater than 4.
 \begin{remark}
+  \label{1:2}
   When we say one event $A$ happens, it means we get some outcome $\omega \in
   \om$ s.t. $\omega \in A$. If $\omega \not \in A$, then $A$ \textit{doesn't}
   happen.
 \end{remark}
 \begin{remark}
+  \label{1:3}
   We can also do set operations on events. That is if $A$ and $B$ are events,
   then we can say that the event of $A$ or $B$ happening is exactly $A \cup B$.
 \end{remark}
 \begin{definition}
+  \label{1:4}
   We define the complement of event $A$ to be $A^{c} = \{\omega \in \om :
   \omega \not \in A\}$.
 \end{definition}
 \begin{remark}
+  \label{1:5}
   If $\om$ is finite, then one possible choice of $\F$ is $\F = 2^{\om}$.
 \end{remark}
 Note that $2^{\om}$ is defined to be the \textit{power set} of $\om$, or the
@@ -77,12 +91,13 @@ $[0, 1]$. That is, $\Prob : \F \to [0, 1]$. Notice that this means we can only
 talk about the probability of one event.
 
 If we want to talk about the probability of some outcome $\omega$, then
-formally we would define the event $\{\omega\}$ and ask what is
+ formally we would define the event $\{\omega\}$ and ask what is
 $\Prob(\{\omega\})$.
 
 Recall that we said that $\F$ is a ``$\sigma$ algebra''. Here we define it
 formally.
 \begin{definition}
+  \label{1:6}
   Let $\om$ be a set. We say that $\F$ is a $\sigma$ algebra of $\om$ if it
   satisfies:
   \begin{enumerate}
@@ -90,11 +105,145 @@ formally.
   \item If $A_{1}, A_{2}, \cdots \in \F$, then $\bigcup_{i=1}^{\infty} A_{i}
     \in \F$
   \item If $A \in \F$, then $A^{c} \in F$ (recall that $A^{c}$ is the
-    \textit{complement} if $A$)
+    \textit{complement} of $A$)
   \end{enumerate}
 \end{definition}
-Now just from these three properties, we can, in fact, prove that if $A_{1},
-A_{2}, \cdots, A_{n} \in \F$, then $\bigcap_{i=1}^{n} A_{i} \in \F$ as well.
+
+\newpage
+
+\section{Lecture 2}
+\label{lec2}
+\begin{remark}
+  \label{2:1}
+  $\F$ is formulated by our choice but it's usually the set of all events. For
+  example, we might have $\F = \{\emptyset, \Omega\}$ or $\F = \{\emptyset,
+  \Omega, A, A^{c}\}$.
+\end{remark}
+
+\begin{proposition}
+  \label{2:2}
+  Let $\F$ be a $\sigma$-algebra and $A_{1}, A_{2}, \cdots \in \F$, then
+  $\bigcap_{i=1}^{\infty} A_{i} \in \F$.
+\end{proposition}
+\begin{proof}
+  Since $A_{1}, A_{2}, \cdots \in \F$, then by Definition~\ref{1:6} we have
+  that $A_{1}^{c}, A_{2}^{c}, \cdots \in \F$ and again by definition
+  $\bigcup_{i=1}^{\infty} A_{i}^{c} \in \F$. So by definition once again,
+  $(\bigcup_{i=1}^{\infty} A_{i}^{c})^{c} \in \F$ (since the complement of any
+  event is also in $\F$). But this is equivalent to $\bigcap_{i=1}^{\infty}
+  A_{i}$.
+\end{proof}
+
+We now formally define what $\Prob$ is.
+\begin{definition}
+  \label{2:3}
+  We define $\Prob$ as a probability measure where $\Prob$ is a function $\Prob
+  : \F \to [0,1]$ such that:
+  \begin{enumerate}
+  \item $\Prob(\emptyset) = 0$.
+  \item $\Prob(\Omega) = 1$.
+  \item If $A_{1}, A_{2}, \cdots \in \F$ and $A_{i} \cap A_{j} = \emptyset,
+    \forall i \neq j$ (or pairwise disjoint), then
+    \[
+      \Prob(\bigcup_{i=1}^{\infty}A_{i}) = \sum_{i=1}^{\infty}\Prob(A_{i})
+    \]
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  \label{2:4}
+  The triple $(\om, \F, \Prob)$ is called a probability space. This also
+  uniquely characterizes a random experiment and vice versa.
+
+  For example, if we roll a die the experiment may change depending on how we
+  define our probability space. We could define $\om = \{1, 2, 3, 4, 5, 6\}$
+  and let $\F = 2^{\om}$ (recall that this is the power set of $\om$). This
+  then would simulate simply rolling the die and recording what number we
+  get. However, if we were to define $\F = \{\emptyset, \om, \{1, 3, 5\}, \{2,
+  4, 6\}\}$, then this would simulate rolling the die as a fair coin!
+
+  Thus, it is important to always specify what $\om, \F$ and $\Prob$ are with
+  any random experiment.
+\end{remark}
+
+We now prove a few basic properties of probability spaces.
+\begin{proposition}
+  \label{2:5}
+  Let $(\om, \F, \Prob)$ be a probability space.
+  \begin{enumerate}
+  \item If $A \in \F$, then $\Prob(A^{c}) = 1 - \Prob(A)$.
+  \item If $A, B \in \F$ and $A \subseteq B$ then $\Prob(B) = \Prob(A) + \Prob
+    (B \setminus A) \geq \Prob(A)$. Recall that $B \setminus A = \{\omega \in
+    \om : \omega \in B \land \omega \not\in A\}$.
+  \item If $A_{1}, A_{2}, \cdots, A_{n} \in \F$, then
+    \[
+      \begin{split}
+      \Prob(\bigcup_{i=1}^{n}A_{i}) &= \sum_{i=1}^{n}\Prob(A_{i}) - \sum_{i < j}
+                                      \Prob(A_{i} \cap A_{j}) \\
+                                    &+ \sum_{i < k < j} \Prob(A_{i} \cap A_{j} \cap
+        A_{k}) - \cdots + (-1)^{n-1}\Prob(A_{1} \cap \cdots \cap A_{n})
+        \end{split}
+      \]
+      
+    \item If $A_{1} \subseteq A_{2} \subseteq \hdots$ then
+      $\lim_{n \to \infty} \Prob(A_{n}) = \Prob(\bigcup_{i=1}^{\infty} A_{n})$.
+    \item If $A_{1} \subseteq A_{2} \subseteq \hdots$ then $\lim_{n \to \infty}
+      \Prob(A_{n}) = \Prob(\bigcap_{i=1}^{\infty} A_{n})$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  $ $\newline 
+  \begin{enumerate}
+  \item Notice that $A$ and $A^{c}$ are disjoint and $A \cup A^{c} = \om$. So
+    $1 = \Prob(\om) = \Prob(A \cup A^{c}) = \Prob(A) + \Prob(A^{c})$.
+    
+  \item Since $A \subseteq B$, then $B = A \cup (B \setminus A)$ and $\Prob(B)
+    = \Prob(A) + \Prob(B \setminus A)$. Since $\Prob(B \setminus A) \geq 0$ by
+    Definition~\ref{2:3}, then $\Prob(B) = \Prob(A) + \Prob(B \setminus A) \geq
+    \Prob(A)$.
+  \item We will show by induction but we will only show the base case and leave
+    the inductive step as an exercise for the reader.
+
+    For the base case or $n = 2$, notice that $A_{1} \cup A_{2} = A_{2} \cup
+    (A_{1} \setminus A_{2})$ and that $A_{1} = (A_{1} \cap A_{2}) \cup (A_{1}
+    \setminus A_{2})$. So $\Prob(A_{1} \cup A_{2}) = \Prob(A_{2} + \Prob(A_{1}
+    \setminus A_{2})$ and $\Prob(A_{1}) = \Prob(A_{1} \cap A_{2}) \cup \Prob(A_{1}
+    \setminus A_{2})$. Combining these two equations gives us our base case.
+
+    \textbf{Hint:} For the inductive step, maybe we can treat $\Prob(A_{1} \cup
+    A_{2} \cup A_{3}) = \Prob((A_{1} \cup A_{2}) \cup A_{3})$.
+  \item Define $B_{1} = A_{1}, B_{2} = A_{2} \setminus A_{1}$, and $B_{i} =
+    A_{i} \setminus A_{i-1}$. Notice that this means that the $B_{i}$'s are
+    pairwise disjoint and $\bigcup_{i=1}^{\infty}B_{i} =
+    \bigcup_{i=1}^{\infty}A_{i}$. So
+    \begin{align*}
+      \Prob(\bigcup_{i=1}^{\infty}A_{i}) = \Prob(\bigcup_{i=1}^{\infty}B_{i}) =
+      \sum_{i=1}^{\infty}\Prob(B_{i}) = \lim_{n \to \infty}
+      \sum_{i=1}^{n}\Prob(B_{i})
+    \end{align*}
+    But notice that
+    \begin{align*}
+      \Prob(B_{1}) &= \Prob(A_{1}) \\
+      \Prob(B_{2}) &= \Prob(A_{2} \setminus A_{1}) = \Prob(A_{2}) -
+                     \Prob(A_{1}) \\
+      \vdots \\
+      \Prob(B_{n}) &= \Prob(A_{n}) - \Prob(A_{n-1})
+    \end{align*}
+    This gives us a \textit{telescoping} sum and so $\sum_{i=1}^{n}\Prob(B_{i})
+    = \Prob(A_{n})$ and $\lim_{n \to \infty} \sum_{i=1}^{n}\Prob(B_{i}) =
+    \lim_{n\to\infty}\Prob(A_{n})$.
+  \item Similar to (4).
+  \end{enumerate}
+\end{proof}
+
+We now begin our discussion on \textit{conditional probability}.
+\begin{definition}
+  \label{2:6}
+  Let $A$ and $B$ be two events with $\Prob(B) > 0$. Then the conditional
+  probability of $A$ given $B$ is
+  \[
+    \Prob(A \mid B) = \frac{\Prob(A \cap B)}{\Prob(B)}
+  \]
+\end{definition}
 \end{document}
 
 
